@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RKP School (Madina) - Excellence in Education</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 3px solid #1e3c72;
+        }
+
+        .logo h1 {
+            color: #1e3c72;
+            font-size: 1.5em;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #1e3c72;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: #1e3c72;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(30, 60, 114, 0.8), rgba(42, 82, 152, 0.8)),
+                url('School/school.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #1e3c72;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2a5298;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(30, 60, 114, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #1e3c72;
+            transform: translateY(-2px);
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5em;
+            color: #1e3c72;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .section-title p {
+            font-size: 1.1em;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 1.8em;
+            color: #1e3c72;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #1e3c72;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1em;
+            color: #666;
+        }
+
+        /* Teachers Section */
+        .teachers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .teacher-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .teacher-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .teacher-image {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .teacher-image img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .teacher-card:hover .teacher-image img {
+            transform: scale(1.1);
+        }
+
+        .teacher-info {
+            padding: 25px;
+        }
+
+        .teacher-name {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #1e3c72;
+            margin-bottom: 5px;
+        }
+
+        .teacher-role {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .teacher-bio {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* News Section */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .news-image {
+            height: 200px;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .news-image i {
+            font-size: 3em;
+            color: white;
+        }
+
+        .news-content {
+            padding: 25px;
+        }
+
+        .news-date {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .news-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #1e3c72;
+            margin-bottom: 15px;
+        }
+
+        .news-excerpt {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-info {
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .contact-item i {
+            font-size: 1.5em;
+            color: #1e3c72;
+            margin-right: 15px;
+            width: 30px;
+        }
+
+        .contact-item h4 {
+            font-size: 1.1em;
+            color: #1e3c72;
+            margin-bottom: 5px;
+        }
+
+        .contact-item p {
+            color: #666;
+        }
+
+        .contact-form {
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e1e1;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #1e3c72;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Admissions Section */
+        .admissions-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .admissions-content h3 {
+            font-size: 1.8em;
+            color: #1e3c72;
+            margin-bottom: 20px;
+        }
+
+        .admissions-content p {
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .requirements {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .requirement-item {
+            padding: 25px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .requirement-item i {
+            font-size: 2.5em;
+            color: #1e3c72;
+            margin-bottom: 15px;
+        }
+
+        .requirement-item h4 {
+            font-size: 1.2em;
+            color: #1e3c72;
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3em;
+            margin-bottom: 20px;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            line-height: 1.8;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: white;
+            color: #1e3c72;
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Scroll to Top */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: #1e3c72;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .scroll-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            background: #2a5298;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            .hero p {
+                font-size: 1.1em;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 200px;
+            }
+
+            .section-title h2 {
+                font-size: 2em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .school-leaders .leaders-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+        }
+
+        /* Image Modal/Lightbox */
+        .image-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            animation: zoomIn 0.3s ease;
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: #1e3c72;
+        }
+
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 50px;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            padding: 20px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .modal-nav:hover {
+            background: rgba(30, 60, 114, 0.8);
+        }
+
+        .modal-prev {
+            left: 20px;
+        }
+
+        .modal-next {
+            right: 20px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 0 15px;
+            }
+
+            .hero h1 {
+                font-size: 2em;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .teachers-grid,
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .school-leaders .leaders-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .school-leaders .leaders-grid>div {
+                padding: 15px;
+            }
+
+            .school-leaders .leaders-grid>div h3 {
+                font-size: 1.1em;
+            }
+
+            .school-leaders .leaders-grid>div .leader-image,
+            .school-leaders .leaders-grid>div>div[style*="width: 120px"] {
+                width: 100px !important;
+                height: 100px !important;
+            }
+
+            .school-leaders .leaders-grid>div>div[style*="width: 80px"] {
+                width: 60px !important;
+                height: 60px !important;
+            }
+
+            .modal-nav {
+                font-size: 30px;
+                padding: 15px;
+            }
+
+            .modal-close {
+                font-size: 30px;
+                top: -40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="School/Rkp.jpg" alt="RKP School Logo" onerror="this.src='School/default.jpg'">
+                <h1>RKP School</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#school-head">School Head</a></li>
+                <li><a href="#teachers">Teachers</a></li>
+                <li><a href="#school-leaders">School Leaders</a></li>
+                <li><a href="#teachers-day">Teachers Day</a></li>
+                <li><a href="#news">News</a></li>
+                <li><a href="#admissions">Admissions</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Welcome to RKP School (Madina)</h1>
+            <p>Excellence in Education, Building Tomorrow's Leaders</p>
+            <div class="hero-buttons">
+                <a href="#about" class="btn btn-primary">Learn More</a>
+                <a href="#contact" class="btn btn-secondary">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Our School</h2>
+                <p>Discover what makes RKP School (Madina) a place of excellence and innovation</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Excellence in Education</h3>
+                    <p>RKP School (Madina) has been a cornerstone of quality education in our community for many years.
+                        We are committed to providing a nurturing environment where students can develop academically,
+                        socially, and personally.</p>
+                    <p>Our dedicated faculty, modern facilities, and comprehensive curriculum ensure that every student
+                        receives the best possible education to prepare them for future success.</p>
+                    <p>We believe in holistic development, combining academic excellence with character building,
+                        sports, and extracurricular activities to create well-rounded individuals.</p>
+                    <div
+                        style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-top: 20px; border-left: 4px solid #1e3c72;">
+                        <h4 style="color: #1e3c72; margin-bottom: 10px;">CBSE Affiliation Details</h4>
+                        <p style="margin: 5px 0;"><strong>Affiliation Code:</strong> 530569</p>
+                        <p style="margin: 5px 0;"><strong>School Code:</strong> 40558</p>
+                        <p style="margin: 5px 0;"><strong>Email:</strong> admin@rkp.education</p>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="School/Rkp.jpg" alt="School Building" onerror="this.src='School/default.jpg'">
+                </div>
+            </div>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">Students</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Teachers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">28+</div>
+                    <div class="stat-label">Years of Excellence</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Success Rate</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- School Head Section -->
+    <section id="school-head">
+        <div class="container">
+            <div class="section-title">
+                <h2>School Director</h2>
+                <p>Meet our esteemed school director who leads our institution with vision and dedication</p>
+            </div>
+            <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+                <div
+                    style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <div style="font-size: 3em; margin-bottom: 20px;">🎓</div>
+                    <img src="shaildangi.png" alt="Shail - School Director"
+                        style="width: 150px; height: 150px; border-radius: 50%; border: 4px solid #1e3c72; object-fit: cover; margin-bottom: 20px;"
+                        onerror="this.src='School/default.jpg'">
+                    <h3 style="color: #1e3c72; margin-bottom: 10px; font-size: 1.5em;">Mr. Shail</h3>
+                    <p style="color: #666; font-style: italic; margin-bottom: 15px;">School Director</p>
+                    <p style="color: #555; line-height: 1.6;">Our esteemed director who guides the school with wisdom
+                        and vision, ensuring excellence in education and character development for all students.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teachers Section -->
+    <section id="teachers">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Dedicated Teachers</h2>
+                <p>Meet the passionate educators who inspire and guide our students</p>
+            </div>
+            <div class="teachers-grid">
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <img src="School/geeta.jpg" alt="Mrs. Geeta Rathee" onerror="this.src='School/default.jpg'">
+                    </div>
+                    <div class="teacher-info">
+                        <h3 class="teacher-name">Mrs. Geeta Rathee</h3>
+                        <div class="teacher-role">Principal</div>
+                        <p class="teacher-bio">Runs the school with wisdom and dedication, ensuring every student
+                            receives the guidance they need.</p>
+                    </div>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <img src="School/pawan.jpg" alt="Mr. Pawan" onerror="this.src='School/default.jpg'">
+                    </div>
+                    <div class="teacher-info">
+                        <h3 class="teacher-name">Mr. Pawan</h3>
+                        <div class="teacher-role">Mathematics Teacher</div>
+                        <p class="teacher-bio">Makes numbers fun and accessible, helping students discover the beauty of
+                            mathematics.</p>
+                    </div>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <img src="School/gupta.jpg" alt="Mr. Gupta" onerror="this.src='School/default.jpg'">
+                    </div>
+                    <div class="teacher-info">
+                        <h3 class="teacher-name">Mr. Gupta</h3>
+                        <div class="teacher-role">English Teacher</div>
+                        <p class="teacher-bio">Brings stories to life and helps students master the English language
+                            with passion.</p>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="School/index.html" class="btn btn-primary">View All Teachers</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- School Leaders Section -->
+    <section id="school-leaders">
+        <div class="container">
+            <div class="section-title">
+                <h2>School Leaders</h2>
+                <p>Meet our student leaders who represent excellence and leadership at RKP School</p>
+            </div>
+            <div style="background: #f8f9fa; padding: 30px; border-radius: 15px; margin: 30px 0;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                    <!-- School Captain -->
+                    <div
+                        style="text-align: center; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                        <div style="font-size: 2em; margin-bottom: 10px;">👑</div>
+                        <h3 style="color: #1e3c72; margin-bottom: 15px;">School Captain</h3>
+                        <img src="school2.png" alt="Nitika - School Captain"
+                            style="width: 120px; height: 120px; border-radius: 50%; border: 3px solid #1e3c72; object-fit: cover;"
+                            onerror="this.src='School/default.jpg'">
+                        <p style="font-size: 1.2em; font-weight: 600; color: #333; margin-top: 15px;">Nitika</p>
+                        <p style="color: #666;">Class 12th</p>
+                    </div>
+
+                    <!-- School Vice Captain -->
+                    <div
+                        style="text-align: center; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                        <div style="font-size: 2em; margin-bottom: 10px;">👑</div>
+                        <h3 style="color: #1e3c72; margin-bottom: 15px;">School Vice Captain</h3>
+                        <img src="dangi.png" alt="Mitanshu - School Vice Captain"
+                            style="width: 120px; height: 120px; border-radius: 50%; border: 3px solid #1e3c72; object-fit: cover;"
+                            onerror="this.src='School/default.jpg'">
+                        <p style="font-size: 1.2em; font-weight: 600; color: #333; margin-top: 15px;">Mitanshu</p>
+                        <p style="color: #666;">Class 12th</p>
+                    </div>
+
+                    <!-- Atal Ambassadors (Dual Layout) -->
+                    <div
+                        style="text-align: center; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                        <div style="font-size: 2em; margin-bottom: 10px;">🌟</div>
+                        <h3 style="color: #1e3c72; margin-bottom: 20px;">Atal Ambassadors</h3>
+                        <div style="display: flex; justify-content: space-around; margin-bottom: 15px;">
+                            <div style="text-align: center;">
+                                <img src="atl1.png" alt="Nilesh - Atal Ambassador"
+                                    style="width: 80px; height: 80px; border-radius: 50%; border: 2px solid #1e3c72; object-fit: cover;"
+                                    onerror="this.src='School/default.jpg'">
+                                <p style="font-size: 0.9em; font-weight: 600; color: #333; margin-top: 10px;">Nilesh</p>
+                            </div>
+                            <div style="text-align: center;">
+                                <img src="atl2.png" alt="Yash - Atal Ambassador"
+                                    style="width: 80px; height: 80px; border-radius: 50%; border: 2px solid #1e3c72; object-fit: cover;"
+                                    onerror="this.src='School/default.jpg'">
+                                <p style="font-size: 0.9em; font-weight: 600; color: #333; margin-top: 10px;">Yash</p>
+                            </div>
+                        </div>
+                        <p style="color: #666;">Class 12th</p>
+                    </div>
+
+                    <!-- Cultural Prefects (Dual Layout) -->
+                    <div
+                        style="text-align: center; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                        <div style="font-size: 2em; margin-bottom: 10px;">🎭</div>
+                        <h3 style="color: #1e3c72; margin-bottom: 20px;">Cultural Prefects</h3>
+                        <div style="display: flex; justify-content: space-around; margin-bottom: 15px;">
+                            <div style="text-align: center;">
+                                <img src="muskan.png" alt="Muskaan - Cultural Prefect"
+                                    style="width: 80px; height: 80px; border-radius: 50%; border: 2px solid #1e3c72; object-fit: cover;"
+                                    onerror="this.src='School/default.jpg'">
+                                <p style="font-size: 0.9em; font-weight: 600; color: #333; margin-top: 10px;">Muskaan
+                                </p>
+                                <p style="font-size: 0.8em; color: #666;">12th</p>
+                            </div>
+                            <div style="text-align: center;">
+                                <img src="jiya.png" alt="Jiya - Cultural Prefect"
+                                    style="width: 80px; height: 80px; border-radius: 50%; border: 2px solid #1e3c72; object-fit: cover;"
+                                    onerror="this.src='School/default.jpg'">
+                                <p style="font-size: 0.9em; font-weight: 600; color: #333; margin-top: 10px;">Jiya</p>
+                                <p style="font-size: 0.8em; color: #666;">11th</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sports Prefect -->
+                    <div
+                        style="text-align: center; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                        <div style="font-size: 2em; margin-bottom: 10px;">🏏</div>
+                        <h3 style="color: #1e3c72; margin-bottom: 15px;">Sports Prefect</h3>
+                        <img src="sports2.png" alt="Divya - Sports Prefect"
+                            style="width: 120px; height: 120px; border-radius: 50%; border: 3px solid #1e3c72; object-fit: cover;"
+                            onerror="this.src='School/default.jpg'">
+                        <p style="font-size: 1.2em; font-weight: 600; color: #333; margin-top: 15px;">Divya</p>
+                        <p style="color: #666;">Class 12th</p>
+                    </div>
+
+                    <!-- Sports Vice Prefect -->
+                    <div
+                        style="text-align: center; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                        <div style="font-size: 2em; margin-bottom: 10px;">🏅</div>
+                        <h3 style="color: #1e3c72; margin-bottom: 15px;">Sports Vice Prefect</h3>
+                        <img src="anchal.png" alt="Anchal - Sports Vice Prefect"
+                            style="width: 120px; height: 120px; border-radius: 50%; border: 3px solid #1e3c72; object-fit: cover;"
+                            onerror="this.src='School/default.jpg'">
+                        <p style="font-size: 1.2em; font-weight: 600; color: #333; margin-top: 15px;">Anchal</p>
+                        <p style="color: #666;">Class 11th</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teachers Day Gallery Section -->
+    <section id="teachers-day">
+        <div class="container">
+            <div class="section-title">
+                <h2>Teachers Day Celebration</h2>
+                <p>Celebrating our dedicated teachers who inspire and guide our students every day</p>
+            </div>
+            <div style="background: #f8f9fa; padding: 30px; border-radius: 15px; margin: 30px 0;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                    <div
+                        style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                        <img src="Teacher 3.png" alt="Teachers Day Image 1"
+                            style="width: 100%; height: 150px; border-radius: 8px; object-fit: cover;"
+                            onerror="this.src='School/default.jpg'">
+                    </div>
+
+                    <div
+                        style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                        <img src="Teacher 4.png" alt="Teachers Day Image 2"
+                            style="width: 100%; height: 150px; border-radius: 8px; object-fit: cover;"
+                            onerror="this.src='School/default.jpg'">
+                    </div>
+
+                    <div
+                        style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                        <img src="Teacher 5.png" alt="Teachers Day Image 3"
+                            style="width: 100%; height: 150px; border-radius: 8px; object-fit: cover;"
+                            onerror="this.src='School/default.jpg'">
+                    </div>
+
+                    <div
+                        style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                        <img src="Teacher 6.png" alt="Teachers Day Image 4"
+                            style="width: 100%; height: 150px; border-radius: 8px; object-fit: cover;"
+                            onerror="this.src='School/default.jpg'">
+                    </div>
+
+                    <div
+                        style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                        <img src="Teacher 7.png" alt="Teachers Day Image 5"
+                            style="width: 100%; height: 150px; border-radius: 8px; object-fit: cover;"
+                            onerror="this.src='School/default.jpg'">
+                    </div>
+
+                    <div
+                        style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                        <img src="Teacher 9.png" alt="Teachers Day Image 6"
+                            style="width: 100%; height: 150px; border-radius: 8px; object-fit: cover;"
+                            onerror="this.src='School/default.jpg'">
+                    </div>
+
+                    <div
+                        style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                        <img src="Teacher 10.png" alt="Teachers Day Image 7"
+                            style="width: 100%; height: 150px; border-radius: 8px; object-fit: cover;"
+                            onerror="this.src='School/default.jpg'">
+                    </div>
+
+                    <div
+                        style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                        <img src="Teacehr 8.png" alt="Teachers Day Image 8"
+                            style="width: 100%; height: 150px; border-radius: 8px; object-fit: cover;"
+                            onerror="this.src='School/default.jpg'">
+                    </div>
+
+                    <div
+                        style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                        <img src="teacher 11.png" alt="Teachers Day Image 9"
+                            style="width: 100%; height: 150px; border-radius: 8px; object-fit: cover;"
+                            onerror="this.src='School/default.jpg'">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section id="news">
+        <div class="container">
+            <div class="section-title">
+                <h2>Latest News & Events</h2>
+                <p>Stay updated with the latest happenings at RKP School (Madina)</p>
+            </div>
+            <div class="news-grid">
+                <div class="news-card">
+                    <div class="news-image">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="news-content">
+                        <div class="news-date">December 15, 2024</div>
+                        <h3 class="news-title">Annual Sports Day Celebration</h3>
+                        <p class="news-excerpt">Our annual sports day brought together students, teachers, and parents
+                            in a celebration of athletic excellence and teamwork.</p>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-image">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="news-content">
+                        <div class="news-date">December 10, 2024</div>
+                        <h3 class="news-title">New Library Inauguration</h3>
+                        <p class="news-excerpt">We are excited to announce the opening of our new state-of-the-art
+                            library with thousands of books and digital resources.</p>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-image">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="news-content">
+                        <div class="news-date">December 5, 2024</div>
+                        <h3 class="news-title">Academic Excellence Awards</h3>
+                        <p class="news-excerpt">Congratulations to our outstanding students who received academic
+                            excellence awards for their remarkable achievements.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admissions Section -->
+    <section id="admissions">
+        <div class="container">
+            <div class="section-title">
+                <h2>Admissions</h2>
+                <p>Join our community of learners and start your journey towards excellence</p>
+            </div>
+            <div class="admissions-content">
+                <h3>Admission Process - NO ADMISSION FEES!</h3>
+                <div
+                    style="background: linear-gradient(135deg, #27ae60, #2ecc71); color: white; padding: 30px; border-radius: 15px; margin: 20px 0; text-align: center; box-shadow: 0 10px 30px rgba(39, 174, 96, 0.3);">
+                    <h1 style="color: white; font-size: 2.5em; margin-bottom: 10px;"><i class="fas fa-rupee-sign"></i>
+                        FREE ADMISSION</h1>
+                    <p style="font-size: 1.2em; margin: 0;">No Admission Fees for Any Grade Level!</p>
+                </div>
+
+                <p>At RKP School (Madina), we believe education should be accessible to all deserving students. That's
+                    why we have <strong>ABSOLUTELY NO ADMISSION FEES</strong> for any grade level from Nursery to Class
+                    12.</p>
+
+                <div
+                    style="background: #fff3cd; padding: 25px; border-radius: 15px; margin: 25px 0; border-left: 4px solid #ffc107;">
+                    <h4 style="color: #856404; margin-bottom: 15px;"><i class="fas fa-graduation-cap"></i> Merit-Based
+                        Scholarships Available</h4>
+                    <p style="color: #856404; margin: 0; font-size: 1.1em;"><strong>Scholarship Opportunity:</strong>
+                        Students who perform exceptionally well in our admission test may qualify for scholarships
+                        covering tuition fees. Academic excellence is rewarded!</p>
+                </div>
+
+                <p>We offer admissions from Nursery to Class 12, with a focus on holistic development and academic
+                    excellence. Our experienced faculty and modern facilities provide the perfect environment for your
+                    child's educational journey.</p>
+
+                <div class="requirements">
+                    <div class="requirement-item">
+                        <i class="fas fa-file-alt"></i>
+                        <h4>Free Application</h4>
+                        <p>Complete our online application form with all required documents - <strong>NO APPLICATION
+                                FEES!</strong></p>
+                    </div>
+                    <div class="requirement-item">
+                        <i class="fas fa-brain"></i>
+                        <h4>Entrance Test</h4>
+                        <p>Take our entrance assessment to evaluate academic readiness and qualify for merit-based
+                            scholarships</p>
+                    </div>
+                    <div class="requirement-item">
+                        <i class="fas fa-comments"></i>
+                        <h4>Interview</h4>
+                        <p>Meet with our admission committee for a personal interview</p>
+                    </div>
+                    <div class="requirement-item">
+                        <i class="fas fa-handshake"></i>
+                        <h4>Final Admission</h4>
+                        <p>Complete the admission formalities and join our school family - <strong>COMPLETELY FREE!
+                                <b>Only Fees per Month</b></strong></p>
+                    </div>
+                </div>
+
+                <div
+                    style="background: #e8f5e8; padding: 25px; border-radius: 15px; margin-top: 30px; border-left: 4px solid #27ae60;">
+                    <h4 style="color: #27ae60; margin-bottom: 15px;"><i class="fas fa-info-circle"></i> Important
+                        Information</h4>
+                    <ul style="color: #27ae60; margin: 0; padding-left: 20px;">
+                        <li>Admission to RKP School (Madina) is completely free for all grade levels</li>
+                        <li>Scholarships are awarded based on merit in the entrance test</li>
+                        <li>High-performing students may receive full or partial tuition fee waivers</li>
+                        <li>All students receive equal opportunities for academic excellence</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+                <p>Get in touch with us for any inquiries or information</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Address</h4>
+                            <p>RKP School (Madina)<br>Madina, India</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p><a href="tel:+918053034491" style="color: #1e3c72; text-decoration: none;">+91
+                                    8053034491</a><br>
+                                <a href="tel:+918708959475" style="color: #1e3c72; text-decoration: none;">+91
+                                    8708959475</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p><a href="mailto:admin@rkp.education"
+                                    style="color: #1e3c72; text-decoration: none;">admin@rkp.education</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>School Hours</h4>
+                            <p>Mon-Sat: 7:45 AM - 2:00 PM<br>Sunday: Closed</p>
+                            <h4>Office Hours</h4>
+                            <p>Mon - Sat: 8:00 AM - 1:00 PM<br>Sunday: Closed</p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a
+                            href="https://www.instagram.com/rkpschool1997?utm_source=ig_web_button_share_sheet&igsh=eDV4eTA3Z2x5dXZv"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Send us a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>RKP School (Madina)</h3>
+                    <p>Excellence in Education, Building Tomorrow's Leaders. We are committed to providing quality
+                        education and nurturing young minds for a brighter future.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#about">About Us</a><br>
+                    <a href="#school-head">School Head</a><br>
+                    <a href="#teachers">Our Teachers</a><br>
+                    <a href="#school-leaders">School Leaders</a><br>
+                    <a href="#teachers-day">Teachers Day</a><br>
+                    <a href="#news">News & Events</a><br>
+                    <a href="#admissions">Admissions</a><br>
+                    <a href="#contact">Contact Us</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Madina, India</p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+918053034491"
+                            style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">+91 8053034491</a></p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+918708959475"
+                            style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">+91 8708959475</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:admin@rkp.education"
+                            style="color: rgba(255, 255, 255, 0.8); text-decoration: none;">admin@rkp.education</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 RKP School (Madina). All rights reserved. Made with ❤️ Mayank</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Image Modal -->
+    <div class="image-modal" id="imageModal">
+        <button class="modal-close" id="modalClose">&times;</button>
+        <button class="modal-nav modal-prev" id="modalPrev">&#10094;</button>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="Gallery Image">
+        </div>
+        <button class="modal-nav modal-next" id="modalNext">&#10095;</button>
+    </div>
+
+    <script>
+        // Navigation scroll effect
+        window.addEventListener('scroll', function () {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Active navigation link on scroll
+        window.addEventListener('scroll', function () {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (pageYOffset >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Scroll to top functionality
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+        window.addEventListener('scroll', function () {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('show');
+            } else {
+                scrollToTopBtn.classList.remove('show');
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', function () {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Contact form handling
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', function () {
+            navLinks.classList.toggle('active');
+            this.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function () {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+            });
+        });
+
+        // Image Modal Functionality
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalClose = document.getElementById('modalClose');
+        const modalPrev = document.getElementById('modalPrev');
+        const modalNext = document.getElementById('modalNext');
+
+        let currentImageIndex = 0;
+        let galleryImages = [];
+
+        // Function to open modal
+        function openModal(imageSrc, imageIndex) {
+            modal.style.display = 'flex';
+            modalImage.src = imageSrc;
+            currentImageIndex = imageIndex;
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        // Function to close modal
+        function closeModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+
+        // Function to show previous image
+        function showPrevImage() {
+            if (galleryImages.length > 0) {
+                currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+                modalImage.src = galleryImages[currentImageIndex].src;
+            }
+        }
+
+        // Function to show next image
+        function showNextImage() {
+            if (galleryImages.length > 0) {
+                currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+                modalImage.src = galleryImages[currentImageIndex].src;
+            }
+        }
+
+        // Add click event listeners to gallery images
+        function initializeGallery() {
+            galleryImages = document.querySelectorAll('#teachers-day img');
+
+            galleryImages.forEach((img, index) => {
+                img.style.cursor = 'pointer';
+                img.addEventListener('click', function () {
+                    if (this.src && this.src !== '' && !this.src.includes('default.jpg')) {
+                        openModal(this.src, index);
+                    }
+                });
+            });
+        }
+
+        // Event listeners for modal
+        modalClose.addEventListener('click', closeModal);
+        modalPrev.addEventListener('click', showPrevImage);
+        modalNext.addEventListener('click', showNextImage);
+
+        // Close modal when clicking outside the image
+        modal.addEventListener('click', function (e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function (e) {
+            if (modal.style.display === 'flex') {
+                if (e.key === 'Escape') {
+                    closeModal();
+                } else if (e.key === 'ArrowLeft') {
+                    showPrevImage();
+                } else if (e.key === 'ArrowRight') {
+                    showNextImage();
+                }
+            }
+        });
+
+        // Initialize gallery when page loads
+        window.addEventListener('load', initializeGallery);
+    </script>
+</body>
+
+</html>
