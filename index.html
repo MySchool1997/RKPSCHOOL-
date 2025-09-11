@@ -124,8 +124,8 @@
         }
 
         .dynamic-navbar.shrink .logo img {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
         }
 
         .dynamic-navbar.shrink .logo h1 {
@@ -163,23 +163,23 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             margin-right: auto;
             flex-shrink: 0;
-            margin-left: 10px;
+            margin-left: 5px;
         }
 
         .logo img {
-            width: 80px;
-            height: 80px;
+            width: 65px;
+            height: 65px;
             border-radius: 50%;
-            border: 4px solid #1e3c72;
+            border: 3px solid #1e3c72;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 8px 25px rgba(30, 60, 114, 0.2);
+            box-shadow: 0 6px 20px rgba(30, 60, 114, 0.2);
             background: white;
-            padding: 3px;
+            padding: 2px;
         }
 
         .logo h1 {
@@ -230,13 +230,14 @@
             text-decoration: none;
             color: #333;
             font-weight: 500;
-            font-size: 0.9em;
+            font-size: 0.85em;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
-            padding: 10px 16px;
-            border-radius: 12px;
-            margin: 0 2px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            margin: 0 1px;
             font-family: 'Inter', sans-serif;
+            letter-spacing: 0.3px;
         }
 
         .nav-link:hover {
@@ -362,14 +363,15 @@
             text-decoration: none;
             color: #333;
             font-weight: 500;
-            font-size: 1.0em;
-            padding: 16px 24px;
+            font-size: 0.95em;
+            padding: 14px 20px;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             border-bottom: 1px solid rgba(102, 126, 234, 0.1);
             position: relative;
             font-family: 'Inter', sans-serif;
             border-radius: 8px;
-            margin: 4px 8px;
+            margin: 3px 6px;
+            letter-spacing: 0.3px;
         }
 
         .mobile-nav-link:hover,
@@ -875,6 +877,135 @@
 
         .gallery-content.active {
             display: block;
+        }
+
+        /* Gallery Carousel Styles */
+        .gallery-carousel {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .carousel-container {
+            display: flex;
+            transition: transform 0.5s ease;
+            width: 100%;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(102, 126, 234, 0.9);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            z-index: 10;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .carousel-nav:hover {
+            background: rgba(102, 126, 234, 1);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-prev {
+            left: 15px;
+        }
+
+        .carousel-next {
+            right: 15px;
+        }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background: rgba(102, 126, 234, 0.9);
+            transform: scale(1.2);
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+            padding: 20px 15px 15px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-item h4 {
+            margin: 0 0 5px 0;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        .gallery-item p {
+            margin: 0;
+            font-size: 0.9em;
+            opacity: 0.9;
         }
 
         .gallery-tab.active {
@@ -1554,6 +1685,181 @@
                 grid-template-columns: repeat(2, 1fr);
                 gap: 15px;
             }
+
+            /* Events Modal Mobile Styles */
+            .events-modal-content,
+            .event-details-content {
+                width: 95%;
+                padding: 20px;
+                max-height: 85vh;
+            }
+
+            .events-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .event-card img {
+                height: 150px;
+            }
+
+            .event-card h3 {
+                font-size: 1.1em;
+                padding: 12px 15px 3px;
+            }
+
+            .event-card p {
+                font-size: 0.85em;
+                padding: 0 15px 12px;
+            }
+        }
+
+        /* Events Modal */
+        .events-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .events-modal-content {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 40px;
+            width: 90%;
+            max-width: 1000px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.2), 0 10px 40px rgba(0, 0, 0, 0.1);
+            animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .events-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 30px;
+            cursor: pointer;
+            color: #666;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .events-modal-close:hover {
+            color: #1e3c72;
+            background: rgba(102, 126, 234, 0.2);
+            transform: scale(1.1);
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .event-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .event-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .event-card h3 {
+            padding: 15px 20px 5px;
+            margin: 0;
+            color: #1e3c72;
+            font-size: 1.2em;
+        }
+
+        .event-card p {
+            padding: 0 20px 15px;
+            margin: 0;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        /* Event Details Modal */
+        .event-details-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 10001;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .event-details-content {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 40px;
+            width: 90%;
+            max-width: 700px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.2), 0 10px 40px rgba(0, 0, 0, 0.1);
+            animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .event-details-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 30px;
+            cursor: pointer;
+            color: #666;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .event-details-close:hover {
+            color: #1e3c72;
+            background: rgba(102, 126, 234, 0.2);
+            transform: scale(1.1);
         }
 
         /* Image Modal/Lightbox */
@@ -1795,10 +2101,10 @@
                     <div
                         style="background: linear-gradient(135deg, rgba(102,126,234,0.1) 0%, rgba(118,75,162,0.1) 100%); padding: 25px; border-radius: 15px; margin-bottom: 25px; border-left: 4px solid #667eea;">
                         <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
-                            <img src="rkp.jpg" alt="RKP School Logo - Premier CBSE Affiliated Educational Institution"
-                                style="width: 80px; height: 80px; border-radius: 50%; border: 4px solid #667eea; object-fit: cover; box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);"
-                                onerror="this.src='rkp.jpg'">
                             <h4 style="color: #1e3c72; margin: 0; font-size: 1.3em;">🏫 Our Mission</h4>
+                            <img src="rkp.jpg" alt="RKP School Logo - Premier CBSE Affiliated Educational Institution"
+                                style="width: 80px; height: 80px; border-radius: 50%; border: 4px solid #667eea; object-fit: cover; box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);"
+                                onerror="this.src='rkp.jpg'">
                         </div>
                         <ul style="color: #555; line-height: 1.7; padding-left: 20px;">
                             <li><strong>Quality Education:</strong> CBSE curriculum with modern teaching methods</li>
@@ -1834,9 +2140,8 @@
                     </div>
                 </div>
                 <div class="about-image">
-                    <img src="rkp.jpg" alt="RKP School Logo - Premier CBSE Affiliated Educational Institution"
-                        onerror="this.src='School/default.jpg'" loading="lazy"
-                        style="border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
+                    <img src="rkp.jpg" alt="RKP School Campus" onerror="this.src='School/default.jpg'">
+                </div>
                 </div>
             </div>
             <div class="stats">
@@ -2084,91 +2389,18 @@
             <div style="text-align: center; margin-bottom: 40px;">
                 <div
                     style="display: inline-flex; background: #f8f9fa; border-radius: 25px; padding: 5px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-                    <button class="gallery-tab active" onclick="showGallery('events')"
-                        style="padding: 12px 25px; border: none; background: #1e3c72; color: white; border-radius: 20px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">Events</button>
-                    <button class="gallery-tab" onclick="showGallery('faculty')"
-                        style="padding: 12px 25px; border: none; background: transparent; color: #666; border-radius: 20px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">Faculty</button>
+                    <button class="gallery-tab active" onclick="showGallery('faculty')"
+                        style="padding: 12px 25px; border: none; background: #1e3c72; color: white; border-radius: 20px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">Faculty</button>
                     <button class="gallery-tab" onclick="showGallery('celebrations')"
                         style="padding: 12px 25px; border: none; background: transparent; color: #666; border-radius: 20px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">Celebrations</button>
+                    <button class="gallery-tab" onclick="showEventsModal()"
+                        style="padding: 12px 25px; border: none; background: transparent; color: #666; border-radius: 20px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">Events</button>
                 </div>
             </div>
 
-            <!-- Events Gallery -->
-            <div id="events-gallery" class="gallery-content active">
-                <div style="background: #f8f9fa; padding: 25px; border-radius: 15px; margin: 30px 0;">
-                    <h3 style="text-align: center; color: #1e3c72; margin-bottom: 20px;">School Events</h3>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px;">
-                        <div
-                            style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
-                            <img src="annual sprts.png" alt="School Event 1"
-                                style="width: 100%; height: 200px; border-radius: 10px; object-fit: cover;"
-                                loading="lazy">
-                            <h4 style="margin-top: 15px; color: #1e3c72; font-size: 1.3em;">Annual Sports Day</h4>
-                            <p style="color: #666; font-size: 1em;">Celebrating athletic excellence and teamwork</p>
-                        </div>
-                        <div
-                            style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-                            <img src="meditation.png" alt="School Event 2"
-                                style="width: 100%; height: 180px; border-radius: 8px; object-fit: cover;"
-                                onerror="this.src='School/default.jpg'" loading="lazy">
-                            <h4 style="margin-top: 10px; color: #1e3c72; font-size: 1.1em;">Meditation</h4>
-                            <p style="color: #666; font-size: 0.9em;">Relx Mind and Calm..</p>
-                        </div>
-                        <div
-                            style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-                            <img src="cultrual.png" alt="School Event 3"
-                                style="width: 100%; height: 180px; border-radius: 8px; object-fit: cover;"
-                                onerror="this.src='School/default.jpg'" loading="lazy">
-                            <h4 style="margin-top: 10px; color: #1e3c72; font-size: 1.1em;">Cultural Fest</h4>
-                            <p style="color: #666; font-size: 0.9em;">Celebrating diversity through art and culture</p>
-                        </div>
-                        <div
-                            style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-                            <img src="15aug.png" alt="School Event 4"
-                                style="width: 100%; height: 180px; border-radius: 8px; object-fit: cover;"
-                                onerror="this.src='School/default.jpg'" loading="lazy">
-                            <h4 style="margin-top: 10px; color: #1e3c72; font-size: 1.1em;">Independence Day</h4>
-                            <p style="color: #666; font-size: 0.9em;">Honoring our nation's freedom and values</p>
-                        </div>
-                        <div
-                            style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-                            <img src="PTM1.png" alt="School Event 5"
-                                style="width: 100%; height: 180px; border-radius: 8px; object-fit: cover;"
-                                onerror="this.src='School/default.jpg'" loading="lazy">
-                            <h4 style="margin-top: 10px; color: #1e3c72; font-size: 1.1em;">Parent-Teacher Meeting</h4>
-                            <p style="color: #666; font-size: 0.9em;">Building strong partnerships for student success
-                            </p>
-                        </div>
-                        <div
-                            style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-                            <img src="annual day.png" alt="School Event 6"
-                                style="width: 100%; height: 180px; border-radius: 8px; object-fit: cover;"
-                                onerror="this.src='School/default.jpg'" loading="lazy">
-                            <h4 style="margin-top: 10px; color: #1e3c72; font-size: 1.1em;">Annual Day</h4>
-                            <p style="color: #666; font-size: 0.9em;">Showcasing talents and achievements</p>
-                        </div>
-                        <div
-                            style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-                            <img src="rkp.jpg" alt="RKP School Campus"
-                                style="width: 100%; height: 180px; border-radius: 8px; object-fit: cover;"
-                                onerror="this.src='School/default.jpg'" loading="lazy">
-                            <h4 style="margin-top: 10px; color: #1e3c72; font-size: 1.1em;">School Campus</h4>
-                            <p style="color: #666; font-size: 0.9em;">Our beautiful learning environment</p>
-                        </div>
-                        <div
-                            style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-                            <img src="rkp.jpg" alt="RKP School Logo Display"
-                                style="width: 100%; height: 180px; border-radius: 8px; object-fit: cover;"
-                                onerror="this.src='School/default.jpg'" loading="lazy">
-                            <h4 style="margin-top: 10px; color: #1e3c72; font-size: 1.1em;">School Identity</h4>
-                            <p style="color: #666; font-size: 0.9em;">Our proud school logo and emblem</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <!-- Faculty Gallery -->
-            <div id="faculty-gallery" class="gallery-content">
+            <div id="faculty-gallery" class="gallery-content active">
                 <div style="background: #f8f9fa; padding: 30px; border-radius: 15px; margin: 30px 0;">
                     <h3 style="text-align: center; color: #1e3c72; margin-bottom: 20px;">Our Faculty</h3>
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px;">
@@ -2893,6 +3125,56 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
+    <!-- Events Modal -->
+    <div class="events-modal" id="eventsModal">
+        <div class="events-modal-content">
+            <span class="events-modal-close" onclick="closeEventsModal()">&times;</span>
+            <h2 style="color: #1e3c72; margin-bottom: 20px; text-align: center;">School Events</h2>
+            <div class="events-grid">
+                <div class="event-card" onclick="showEventDetails('sports')">
+                    <img src="annual sprts.png" alt="Annual Sports Day" onerror="this.src='School/default.jpg'">
+                    <h3>Annual Sports Day</h3>
+                    <p>Celebrating athletic excellence and teamwork</p>
+                </div>
+                <div class="event-card" onclick="showEventDetails('meditation')">
+                    <img src="meditation.png" alt="Meditation Session" onerror="this.src='School/default.jpg'">
+                    <h3>Meditation</h3>
+                    <p>Relax mind and find inner peace</p>
+                </div>
+                <div class="event-card" onclick="showEventDetails('cultural')">
+                    <img src="cultrual.png" alt="Cultural Fest" onerror="this.src='School/default.jpg'">
+                    <h3>Cultural Fest</h3>
+                    <p>Celebrating diversity through art and culture</p>
+                </div>
+                <div class="event-card" onclick="showEventDetails('independence')">
+                    <img src="15aug.png" alt="Independence Day" onerror="this.src='School/default.jpg'">
+                    <h3>Independence Day</h3>
+                    <p>Honoring our nation's freedom and values</p>
+                </div>
+                <div class="event-card" onclick="showEventDetails('ptm')">
+                    <img src="PTM1.png" alt="Parent-Teacher Meeting" onerror="this.src='School/default.jpg'">
+                    <h3>Parent-Teacher Meeting</h3>
+                    <p>Building strong partnerships for student success</p>
+                </div>
+                <div class="event-card" onclick="showEventDetails('annual-day')">
+                    <img src="annual day.png" alt="Annual Day" onerror="this.src='School/default.jpg'">
+                    <h3>Annual Day</h3>
+                    <p>Showcasing talents and achievements</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Event Details Modal -->
+    <div class="event-details-modal" id="eventDetailsModal">
+        <div class="event-details-content">
+            <span class="event-details-close" onclick="closeEventDetails()">&times;</span>
+            <div id="eventDetailsContent">
+                <!-- Event details will be populated here -->
+            </div>
+        </div>
+    </div>
+
     <!-- Image Modal -->
     <div class="image-modal" id="imageModal">
         <button class="modal-close" id="modalClose">&times;</button>
@@ -3534,6 +3816,19 @@
             }
         });
 
+        // Events modal event listeners
+        document.getElementById('eventsModal').addEventListener('click', function (e) {
+            if (e.target === this) {
+                closeEventsModal();
+            }
+        });
+
+        document.getElementById('eventDetailsModal').addEventListener('click', function (e) {
+            if (e.target === this) {
+                closeEventDetails();
+            }
+        });
+
         // Keyboard navigation
         document.addEventListener('keydown', function (e) {
             if (modal.style.display === 'flex') {
@@ -3545,6 +3840,19 @@
                     showNextImage();
                 }
             }
+
+            // Events modal keyboard navigation
+            if (document.getElementById('eventsModal').style.display === 'flex') {
+                if (e.key === 'Escape') {
+                    closeEventsModal();
+                }
+            }
+
+            if (document.getElementById('eventDetailsModal').style.display === 'flex') {
+                if (e.key === 'Escape') {
+                    closeEventDetails();
+                }
+            }
         });
 
         // Initialize gallery when page loads
@@ -3552,6 +3860,11 @@
 
         // Gallery tab functionality
         function showGallery(galleryType) {
+            // Only allow faculty and celebrations
+            if (galleryType !== 'faculty' && galleryType !== 'celebrations') {
+                return;
+            }
+
             // Hide all gallery contents
             const galleries = document.querySelectorAll('.gallery-content');
             galleries.forEach(gallery => {
@@ -3575,6 +3888,113 @@
             if (clickedTab) {
                 clickedTab.classList.add('active');
             }
+        }
+
+        // Events Modal Functions
+        function showEventsModal() {
+            document.getElementById('eventsModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeEventsModal() {
+            document.getElementById('eventsModal').style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+
+        function showEventDetails(eventType) {
+            const eventDetails = {
+                sports: {
+                    title: "Annual Sports Day",
+                    image: "annual sprts.png",
+                    description: "Our Annual Sports Day is a celebration of athletic excellence, teamwork, and physical fitness. Students participate in various sports including track and field events, team sports, and individual competitions.",
+                    date: "March 2025",
+                    activities: ["100m/200m Sprint", "Long Jump", "High Jump", "Relay Races", "Basketball", "Volleyball", "Football", "Badminton"],
+                    highlights: "🏆 Best Athlete Awards, 🥇 House-wise Competitions, 🎉 Cultural Performances"
+                },
+                meditation: {
+                    title: "Meditation & Mindfulness",
+                    image: "meditation.png",
+                    description: "Our meditation sessions help students develop focus, reduce stress, and improve concentration. Regular practice enhances mental well-being and academic performance.",
+                    date: "Daily Sessions",
+                    activities: ["Morning Meditation", "Breathing Exercises", "Yoga Sessions", "Mindfulness Workshops"],
+                    highlights: "🧘 Stress Reduction, 🎯 Improved Focus, 🌟 Better Concentration"
+                },
+                cultural: {
+                    title: "Cultural Fest",
+                    image: "cultrual.png",
+                    description: "The Cultural Fest celebrates the rich diversity of our student body through music, dance, drama, and traditional performances from various cultures and regions.",
+                    date: "February 2025",
+                    activities: ["Traditional Dance", "Folk Music", "Drama Performances", "Art Exhibitions", "Cultural Cuisine"],
+                    highlights: "🎭 Talent Showcase, 🌍 Cultural Diversity, 🎨 Creative Expression"
+                },
+                independence: {
+                    title: "Independence Day Celebration",
+                    image: "15aug.png",
+                    description: "We celebrate India's Independence Day with great enthusiasm, honoring our freedom fighters and the values of democracy, unity, and patriotism.",
+                    date: "August 15th",
+                    activities: ["Flag Hoisting", "Patriotic Songs", "Cultural Programs", "Speech Competition", "Drawing Competition"],
+                    highlights: "🇮🇳 National Pride, 🎌 Flag Ceremony, 🎤 Patriotic Programs"
+                },
+                ptm: {
+                    title: "Parent-Teacher Meeting",
+                    image: "PTM1.png",
+                    description: "Parent-Teacher Meetings provide an opportunity for parents and teachers to discuss student progress, address concerns, and plan for future development.",
+                    date: "Quarterly",
+                    activities: ["Progress Reports", "Individual Consultations", "Academic Planning", "Behavioral Discussions"],
+                    highlights: "📊 Academic Progress, 🤝 Parent Involvement, 📈 Future Planning"
+                },
+                'annual-day': {
+                    title: "Annual Day Celebration",
+                    image: "annual day.png",
+                    description: "The Annual Day is the grand finale of the academic year, showcasing student talents through performances, awards, and memorable celebrations.",
+                    date: "March 2025",
+                    activities: ["Dance Performances", "Singing Competitions", "Prize Distribution", "Annual Report", "Cultural Shows"],
+                    highlights: "🎉 Grand Celebration, 🏅 Achievement Awards, 🎪 Cultural Extravaganza"
+                }
+            };
+
+            const event = eventDetails[eventType];
+            if (!event) return;
+
+            const content = `
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <img src="${event.image}" alt="${event.title}" style="width: 100%; max-width: 300px; height: 200px; object-fit: cover; border-radius: 15px; margin-bottom: 20px;" onerror="this.src='School/default.jpg'">
+                    <h2 style="color: #1e3c72; margin-bottom: 10px;">${event.title}</h2>
+                    <p style="color: #666; font-size: 1.1em;"><strong>📅 Date:</strong> ${event.date}</p>
+                </div>
+
+                <div style="margin-bottom: 25px;">
+                    <h3 style="color: #1e3c72; margin-bottom: 15px;">📖 Description</h3>
+                    <p style="color: #555; line-height: 1.6; font-size: 1em;">${event.description}</p>
+                </div>
+
+                <div style="margin-bottom: 25px;">
+                    <h3 style="color: #1e3c72; margin-bottom: 15px;">🎯 Activities</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        ${event.activities.map(activity => `<div style="background: #f8f9fa; padding: 8px 12px; border-radius: 8px; font-size: 0.9em;">${activity}</div>`).join('')}
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 25px;">
+                    <h3 style="color: #1e3c72; margin-bottom: 15px;">✨ Highlights</h3>
+                    <p style="color: #27ae60; font-size: 1em; font-weight: 500;">${event.highlights}</p>
+                </div>
+
+                <div style="text-align: center; margin-top: 30px;">
+                    <button onclick="closeEventDetails()" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 12px 30px; border-radius: 25px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">
+                        Close Details
+                    </button>
+                </div>
+            `;
+
+            document.getElementById('eventDetailsContent').innerHTML = content;
+            document.getElementById('eventDetailsModal').style.display = 'flex';
+            document.getElementById('eventsModal').style.display = 'none'; // Hide main events modal
+        }
+
+        function closeEventDetails() {
+            document.getElementById('eventDetailsModal').style.display = 'none';
+            document.getElementById('eventsModal').style.display = 'flex'; // Show main events modal again
         }
 
         // Subject selection functionality
