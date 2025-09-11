@@ -1129,11 +1129,11 @@
 
         /* Lazy loading styles */
         img[loading="fast"] {
-            opacity: 0;
+            opacity: 10;
         }
 
         img[loading="fast"].loaded {
-            opacity: 1;
+            opacity: 10;
         }
 
         /* Preload critical images */
@@ -2027,7 +2027,7 @@
         <div class="nav-container">
             <div class="logo">
                 <img src="rkp.jpg" alt="RKP School Madina Logo - Premier CBSE Affiliated Educational Institution"
-                    onerror="this.src='School/default.jpg'">
+                    onerror="this.src='School/default.jpg'" loading="eager" decoding="async" width="65" height="65">
                 <h1>RKP School</h1>
             </div>
 
@@ -2140,7 +2140,7 @@
                     </div>
                 </div>
                 <div class="about-image">
-                    <img src="rkp.jpg" alt="RKP School Campus" onerror="this.src='School/default.jpg'">
+                    <img src="rkp.jpg" alt="RKP School Campus" onerror="this.src='School/default.jpg'" loading="eager" decoding="async" width="500" height="400">
                 </div>
                 </div>
             </div>
@@ -2180,7 +2180,7 @@
                         <img src="shaildangi.png"
                             alt="Mr. Shail - RKP School Director and Educational Leader guiding students with wisdom and vision"
                             style="width: 120px; height: 120px; border-radius: 50%; border: 3px solid #1e3c72; object-fit: cover; display: block;"
-                            onerror="this.src='School/default.jpg'">
+                            onerror="this.src='School/default.jpg'" loading="eager" decoding="async">
                     </div>
                     <h3 style="color: #1e3c72; margin-bottom: 10px; font-size: 1.5em;">Mr. Shail</h3>
                     <p style="color: #666; font-style: italic; margin-bottom: 15px; font-size: 1.0em;">School Director
@@ -2203,7 +2203,7 @@
             <div class="teachers-grid">
                 <div class="teacher-card">
                     <div class="teacher-image">
-                        <img src="geeta.jpg" alt="Mrs. Geeta Rathee" onerror="this.src='School/default.jpg'">
+                        <img src="geeta.jpg" alt="Mrs. Geeta Rathee" onerror="this.src='School/default.jpg'" loading="lazy" decoding="async" width="280" height="220">
                     </div>
                     <div class="teacher-info">
                         <h3 class="teacher-name">Mrs. Geeta Rathee</h3>
@@ -2214,7 +2214,7 @@
                 </div>
                 <div class="teacher-card">
                     <div class="teacher-image">
-                        <img src="School/pawan.jpg" alt="Mr. Pawan" onerror="this.src='School/default.jpg'">
+                        <img src="School/pawan.jpg" alt="Mr. Pawan" onerror="this.src='School/default.jpg'" loading="lazy" decoding="async" width="280" height="220">
                     </div>
                     <div class="teacher-info">
                         <h3 class="teacher-name">Mr. Pawan</h3>
@@ -2225,7 +2225,7 @@
                 </div>
                 <div class="teacher-card">
                     <div class="teacher-image">
-                        <img src="School/gupta.jpg" alt="Mr. Gupta" onerror="this.src='School/default.jpg'">
+                        <img src="School/gupta.jpg" alt="Mr. Gupta" onerror="this.src='School/default.jpg'" loading="lazy" decoding="async" width="280" height="220">
                     </div>
                     <div class="teacher-info">
                         <h3 class="teacher-name">Mr. Gupta</h3>
