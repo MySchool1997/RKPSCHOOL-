@@ -22,99 +22,279 @@
             background-color: #f8f9fa;
         }
 
-        /* Navigation */
-        nav {
+        /* Dynamic Navigation */
+        .dynamic-navbar {
             position: fixed;
             top: 0;
             width: 100%;
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
             z-index: 1000;
             box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-bottom: 1px solid rgba(30, 60, 114, 0.1);
         }
 
-        nav.scrolled {
+        .dynamic-navbar.scrolled {
             background: rgba(255, 255, 255, 0.98);
-            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            backdrop-filter: blur(20px);
+            transform: translateY(0);
+        }
+
+        .dynamic-navbar.shrink {
+            padding: 5px 0;
+        }
+
+        .dynamic-navbar.shrink .nav-container {
+            height: 60px;
+        }
+
+        .dynamic-navbar.shrink .logo img {
+            width: 60px;
+            height: 60px;
+        }
+
+        .dynamic-navbar.shrink .logo h1 {
+            font-size: 1.6em;
+        }
+
+        .dynamic-navbar.shrink .logo::after {
+            height: 45px;
         }
 
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 20px 0 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 80px;
+            height: 75px;
+            transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .nav-container::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 120px;
+            background: linear-gradient(90deg, rgba(30, 60, 114, 0.08), rgba(30, 60, 114, 0.03), transparent);
+            pointer-events: none;
+            border-radius: 0 20px 20px 0;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            margin-right: auto;
+            flex-shrink: 0;
+            margin-left: 10px;
         }
 
         .logo img {
-            width: 60px;
-            height: 60px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
-            border: 3px solid #1e3c72;
+            border: 4px solid #1e3c72;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 25px rgba(30, 60, 114, 0.2);
+            background: white;
+            padding: 3px;
         }
 
         .logo h1 {
             color: #1e3c72;
-            font-size: 1.5em;
-            font-weight: 700;
+            font-size: 2em;
+            font-weight: 800;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-shadow: 0 2px 4px rgba(30, 60, 114, 0.1);
+            letter-spacing: 1px;
         }
 
-        .nav-links {
+        .logo::after {
+            content: '';
+            position: absolute;
+            right: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 2px;
+            height: 60px;
+            background: linear-gradient(180deg, #1e3c72, #2a5298);
+            border-radius: 1px;
+            opacity: 0.3;
+        }
+
+        .logo::before {
+            content: '';
+            position: absolute;
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 75px;
+            background: linear-gradient(180deg, rgba(30, 60, 114, 0.15), rgba(42, 82, 152, 0.15));
+            border-radius: 3px;
+            box-shadow: 0 0 10px rgba(30, 60, 114, 0.1);
+        }
+
+        /* Desktop Navigation */
+        .desktop-nav {
             display: flex;
             list-style: none;
-            gap: 30px;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
         }
 
-        .nav-links a {
+        .nav-link {
             text-decoration: none;
             color: #333;
             font-weight: 500;
-            transition: all 0.3s ease;
+            font-size: 0.9em;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
+            padding: 8px 12px;
+            border-radius: 8px;
         }
 
-        .nav-links a:hover,
-        .nav-links a.active {
+        .nav-link:hover {
             color: #1e3c72;
+            background: rgba(30, 60, 114, 0.05);
+            transform: translateY(-1px);
         }
 
-        .nav-links a::after {
+        .nav-link.active {
+            color: #1e3c72;
+            background: rgba(30, 60, 114, 0.1);
+            font-weight: 600;
+        }
+
+        .nav-link::after {
             content: '';
             position: absolute;
             width: 0;
             height: 2px;
-            bottom: -5px;
+            bottom: 0;
+            left: 50%;
+            background: linear-gradient(90deg, #1e3c72, #2a5298);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 1px;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 80%;
+            left: 10%;
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-btn:hover {
+            background: rgba(30, 60, 114, 0.05);
+        }
+
+        .hamburger {
+            width: 24px;
+            height: 20px;
+            position: relative;
+        }
+
+        .bar {
+            width: 100%;
+            height: 3px;
+            background: #1e3c72;
+            border-radius: 2px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: absolute;
+        }
+
+        .bar:nth-child(1) {
+            top: 0;
+        }
+
+        .bar:nth-child(2) {
+            top: 8px;
+        }
+
+        .bar:nth-child(3) {
+            top: 16px;
+        }
+
+        /* Mobile Navigation Menu */
+        .mobile-nav {
+            position: fixed;
+            top: 75px;
+            left: -100%;
+            width: 260px;
+            height: calc(100vh - 75px);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+            transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 999;
+            border-right: 1px solid rgba(30, 60, 114, 0.1);
+            overflow-y: auto;
+        }
+
+        .mobile-nav.active {
             left: 0;
+        }
+
+
+        .mobile-nav-links {
+            list-style: none;
+            padding: 20px 0;
+            margin: 0;
+        }
+
+        .mobile-nav-link {
+            display: block;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 1.0em;
+            padding: 15px 20px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-bottom: 1px solid rgba(30, 60, 114, 0.05);
+            position: relative;
+        }
+
+        .mobile-nav-link:hover,
+        .mobile-nav-link.active {
+            color: #1e3c72;
+            background: rgba(30, 60, 114, 0.05);
+            padding-left: 40px;
+        }
+
+        .mobile-nav-link::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 2px;
             background: #1e3c72;
             transition: width 0.3s ease;
         }
 
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
-            width: 100%;
-        }
-
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
-
-        .menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background: #333;
-            margin: 3px 0;
-            transition: 0.3s;
+        .mobile-nav-link:hover::before,
+        .mobile-nav-link.active::before {
+            width: 20px;
         }
 
         /* Hero Section */
@@ -128,6 +308,8 @@
             text-align: center;
             color: white;
             position: relative;
+            padding-top: 75px;
+            min-height: 500px;
         }
 
         .hero::before {
@@ -148,14 +330,14 @@
         }
 
         .hero h1 {
-            font-size: 3.5em;
+            font-size: 3.0em;
             margin-bottom: 20px;
             font-weight: 700;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .hero p {
-            font-size: 1.3em;
+            font-size: 1.2em;
             margin-bottom: 30px;
             opacity: 0.9;
         }
@@ -168,10 +350,10 @@
         }
 
         .btn {
-            padding: 15px 30px;
+            padding: 12px 24px;
             border: none;
             border-radius: 50px;
-            font-size: 1.1em;
+            font-size: 1.0em;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -219,14 +401,14 @@
         }
 
         .section-title h2 {
-            font-size: 2.5em;
+            font-size: 2.2em;
             color: #1e3c72;
             margin-bottom: 15px;
             font-weight: 700;
         }
 
         .section-title p {
-            font-size: 1.1em;
+            font-size: 1.0em;
             color: #666;
             max-width: 600px;
             margin: 0 auto;
@@ -236,7 +418,7 @@
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 50px;
+            gap: 60px;
             align-items: center;
         }
 
@@ -249,6 +431,7 @@
         .about-text p {
             margin-bottom: 20px;
             line-height: 1.8;
+            font-size: 1.0em;
         }
 
         .about-image {
@@ -266,12 +449,12 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 30px;
-            margin-top: 50px;
+            margin-top: 40px;
         }
 
         .stat-item {
             text-align: center;
-            padding: 30px;
+            padding: 25px;
             background: white;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -297,7 +480,7 @@
         /* Teachers Section */
         .teachers-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
 
@@ -320,17 +503,17 @@
 
         .teacher-image img {
             width: 100%;
-            height: 250px;
+            height: 220px;
             object-fit: cover;
             transition: transform 0.3s ease;
         }
 
         .teacher-card:hover .teacher-image img {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
         .teacher-info {
-            padding: 25px;
+            padding: 20px;
         }
 
         .teacher-name {
@@ -343,34 +526,37 @@
         .teacher-role {
             color: #666;
             margin-bottom: 15px;
+            font-size: 1.0em;
         }
 
         .teacher-bio {
             color: #555;
             line-height: 1.6;
+            font-size: 0.95em;
         }
+
 
         /* News Section */
         .news-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 35px;
         }
 
         .news-card {
             background: white;
-            border-radius: 15px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
         }
 
         .news-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
         }
 
         .news-image {
-            height: 200px;
+            height: 220px;
             background: linear-gradient(135deg, #1e3c72, #2a5298);
             display: flex;
             align-items: center;
@@ -378,30 +564,31 @@
         }
 
         .news-image i {
-            font-size: 3em;
+            font-size: 4em;
             color: white;
         }
 
         .news-content {
-            padding: 25px;
+            padding: 30px;
         }
 
         .news-date {
             color: #666;
-            font-size: 0.9em;
-            margin-bottom: 10px;
+            font-size: 1em;
+            margin-bottom: 12px;
         }
 
         .news-title {
-            font-size: 1.2em;
+            font-size: 1.4em;
             font-weight: 600;
             color: #1e3c72;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
         }
 
         .news-excerpt {
             color: #555;
             line-height: 1.6;
+            font-size: 1.05em;
         }
 
         /* Contact Section */
@@ -412,40 +599,41 @@
         }
 
         .contact-info {
-            padding: 30px;
+            padding: 40px;
             background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
         }
 
         .contact-item {
             display: flex;
             align-items: center;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
         .contact-item i {
-            font-size: 1.5em;
+            font-size: 1.8em;
             color: #1e3c72;
-            margin-right: 15px;
-            width: 30px;
+            margin-right: 20px;
+            width: 35px;
         }
 
         .contact-item h4 {
-            font-size: 1.1em;
+            font-size: 1.3em;
             color: #1e3c72;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
 
         .contact-item p {
             color: #666;
+            font-size: 1.05em;
         }
 
         .contact-form {
-            padding: 30px;
+            padding: 40px;
             background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
         }
 
         .form-group {
@@ -470,9 +658,39 @@
         }
 
         .form-group input:focus,
-        .form-group textarea:focus {
+        .form-group textarea:focus,
+        .form-group select:focus {
             outline: none;
             border-color: #1e3c72;
+        }
+
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e1e1;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+            background: white;
+        }
+
+        /* Gallery Styles */
+        .gallery-content {
+            display: none;
+        }
+
+        .gallery-content.active {
+            display: block;
+        }
+
+        .gallery-tab.active {
+            background: #1e3c72 !important;
+            color: white !important;
+        }
+
+        .gallery-tab:hover {
+            background: rgba(30, 60, 114, 0.1) !important;
+            color: #1e3c72 !important;
         }
 
         .form-group textarea {
@@ -488,14 +706,15 @@
         }
 
         .admissions-content h3 {
-            font-size: 1.8em;
+            font-size: 2.2em;
             color: #1e3c72;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .admissions-content p {
-            margin-bottom: 30px;
+            margin-bottom: 35px;
             line-height: 1.8;
+            font-size: 1.1em;
         }
 
         .requirements {
@@ -506,23 +725,23 @@
         }
 
         .requirement-item {
-            padding: 25px;
+            padding: 30px;
             background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
 
         .requirement-item i {
-            font-size: 2.5em;
+            font-size: 3em;
             color: #1e3c72;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
         }
 
         .requirement-item h4 {
-            font-size: 1.2em;
+            font-size: 1.4em;
             color: #1e3c72;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         /* Footer */
@@ -615,20 +834,36 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .nav-links {
+            .desktop-nav {
                 display: none;
             }
 
-            .menu-toggle {
-                display: flex;
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .dynamic-navbar.shrink .mobile-nav {
+                top: 65px;
+            }
+
+            .mobile-nav {
+                width: 280px;
+            }
+
+            .mobile-nav-link {
+                font-size: 1.15em;
+            }
+
+            .hero {
+                padding-top: 105px;
             }
 
             .hero h1 {
-                font-size: 2.5em;
+                font-size: 2.2em;
             }
 
             .hero p {
-                font-size: 1.1em;
+                font-size: 1.0em;
             }
 
             .about-content,
@@ -647,7 +882,59 @@
             }
 
             .section-title h2 {
+                font-size: 1.8em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .mobile-nav {
+                width: 100%;
+            }
+
+            .nav-container {
+                padding: 0 15px 0 5px;
+            }
+
+            .nav-container::before {
+                width: 90px;
+                border-radius: 0 15px 15px 0;
+            }
+
+            .logo {
+                gap: 15px;
+                margin-right: 10px;
+                margin-left: 5px;
+            }
+
+            .logo img {
+                width: 55px;
+                height: 55px;
+            }
+
+            .logo h1 {
+                font-size: 1.4em;
+            }
+
+            .logo::after,
+            .logo::before {
+                display: none;
+            }
+
+            .dynamic-navbar.shrink .logo img {
+                width: 45px;
+                height: 45px;
+            }
+
+            .dynamic-navbar.shrink .logo h1 {
+                font-size: 1.2em;
+            }
+
+            .hero h1 {
                 font-size: 2em;
+            }
+
+            .hero {
+                padding-top: 125px;
             }
         }
 
@@ -812,29 +1099,55 @@
 </head>
 
 <body>
-    <!-- Navigation -->
-    <nav id="navbar">
+    <!-- Dynamic Navigation -->
+    <nav id="navbar" class="dynamic-navbar">
         <div class="nav-container">
             <div class="logo">
                 <img src="rkp.jpg" alt="RKP School Logo" onerror="this.src='School/default.jpg'">
                 <h1>RKP School</h1>
             </div>
-            <ul class="nav-links">
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#school-head">School Head</a></li>
-                <li><a href="#teachers">Teachers</a></li>
-                <li><a href="#school-leaders">School Leaders</a></li>
-                <li><a href="#teachers-day">Teachers Day</a></li>
-                <li><a href="#news">News</a></li>
-                <li><a href="#admissions">Admissions</a></li>
-                <li><a href="#contact">Contact</a></li>
+
+            <!-- Desktop Navigation -->
+            <ul class="nav-links desktop-nav">
+                <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
+                <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+                <li><a href="#school-head" class="nav-link" data-section="school-head">School Head</a></li>
+                <li><a href="#teachers" class="nav-link" data-section="teachers">Teachers</a></li>
+                <li><a href="#school-leaders" class="nav-link" data-section="school-leaders">School Leaders</a></li>
+                <li><a href="#gallery" class="nav-link" data-section="gallery">Gallery</a></li>
+                <li><a href="#teachers-day" class="nav-link" data-section="teachers-day">Teachers Day</a></li>
+                <li><a href="#news" class="nav-link" data-section="news">News</a></li>
+                <li><a href="#admissions" class="nav-link" data-section="admissions">Admissions</a></li>
+                <li><a href="#jobs" class="nav-link" data-section="jobs">Jobs</a></li>
+                <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
             </ul>
-            <div class="menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
+
+            <!-- Mobile Menu Button -->
+            <div class="mobile-menu-btn" id="mobileMenuBtn">
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
             </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div class="mobile-nav" id="mobileNav">
+            <ul class="mobile-nav-links">
+                <li><a href="#home" class="mobile-nav-link active" data-section="home">Home</a></li>
+                <li><a href="#about" class="mobile-nav-link" data-section="about">About</a></li>
+                <li><a href="#school-head" class="mobile-nav-link" data-section="school-head">School Head</a></li>
+                <li><a href="#teachers" class="mobile-nav-link" data-section="teachers">Teachers</a></li>
+                <li><a href="#school-leaders" class="mobile-nav-link" data-section="school-leaders">School Leaders</a>
+                </li>
+                <li><a href="#gallery" class="mobile-nav-link" data-section="gallery">Gallery</a></li>
+                <li><a href="#teachers-day" class="mobile-nav-link" data-section="teachers-day">Teachers Day</a></li>
+                <li><a href="#news" class="mobile-nav-link" data-section="news">News</a></li>
+                <li><a href="#admissions" class="mobile-nav-link" data-section="admissions">Admissions</a></li>
+                <li><a href="#jobs" class="mobile-nav-link" data-section="jobs">Jobs</a></li>
+                <li><a href="#contact" class="mobile-nav-link" data-section="contact">Contact</a></li>
+            </ul>
         </div>
     </nav>
 
@@ -909,14 +1222,14 @@
             </div>
             <div style="text-align: center; max-width: 600px; margin: 0 auto;">
                 <div
-                    style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                    <div style="font-size: 3em; margin-bottom: 20px;">🎓</div>
+                    style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <div style="font-size: 2.5em; margin-bottom: 15px;">🎓</div>
                     <img src="shaildangi.png" alt="Shail - School Director"
-                        style="width: 150px; height: 150px; border-radius: 50%; border: 4px solid #1e3c72; object-fit: cover; margin-bottom: 20px;"
+                        style="width: 120px; height: 120px; border-radius: 50%; border: 3px solid #1e3c72; object-fit: cover; margin-bottom: 15px;"
                         onerror="this.src='School/default.jpg'">
                     <h3 style="color: #1e3c72; margin-bottom: 10px; font-size: 1.5em;">Mr. Shail</h3>
-                    <p style="color: #666; font-style: italic; margin-bottom: 15px;">School Director</p>
-                    <p style="color: #555; line-height: 1.6;">Our esteemed director who guides the school with wisdom
+                    <p style="color: #666; font-style: italic; margin-bottom: 15px; font-size: 1.0em;">School Director</p>
+                    <p style="color: #555; line-height: 1.6; font-size: 0.95em;">Our esteemed director who guides the school with wisdom
                         and vision, ensuring excellence in education and character development for all students.</p>
                 </div>
             </div>
@@ -933,7 +1246,7 @@
             <div class="teachers-grid">
                 <div class="teacher-card">
                     <div class="teacher-image">
-                        <img src="School/geeta.jpg" alt="Mrs. Geeta Rathee" onerror="this.src='School/default.jpg'">
+                        <img src="geeta.jpg" alt="Mrs. Geeta Rathee" onerror="this.src='School/default.jpg'">
                     </div>
                     <div class="teacher-info">
                         <h3 class="teacher-name">Mrs. Geeta Rathee</h3>
@@ -978,74 +1291,74 @@
                 <h2>School Leaders</h2>
                 <p>Meet our student leaders who represent excellence and leadership at RKP School</p>
             </div>
-            <div style="background: #f8f9fa; padding: 30px; border-radius: 15px; margin: 30px 0;">
+            <div style="background: #f8f9fa; padding: 25px; border-radius: 15px; margin: 30px 0;">
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
                     <!-- School Captain -->
                     <div
                         style="text-align: center; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
                         <div style="font-size: 2em; margin-bottom: 10px;">👑</div>
-                        <h3 style="color: #1e3c72; margin-bottom: 15px;">School Captain</h3>
+                        <h3 style="color: #1e3c72; margin-bottom: 15px; font-size: 1.1em;">School Captain</h3>
                         <img src="school2.png" alt="Nitika - School Captain"
-                            style="width: 120px; height: 120px; border-radius: 50%; border: 3px solid #1e3c72; object-fit: cover;"
+                            style="width: 100px; height: 100px; border-radius: 50%; border: 3px solid #1e3c72; object-fit: cover;"
                             onerror="this.src='School/default.jpg'">
                         <p style="font-size: 1.2em; font-weight: 600; color: #333; margin-top: 15px;">Nitika</p>
-                        <p style="color: #666;">Class 12th</p>
+                        <p style="color: #666; font-size: 0.95em;">Class 12th</p>
                     </div>
 
                     <!-- School Vice Captain -->
                     <div
                         style="text-align: center; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
                         <div style="font-size: 2em; margin-bottom: 10px;">👑</div>
-                        <h3 style="color: #1e3c72; margin-bottom: 15px;">School Vice Captain</h3>
+                        <h3 style="color: #1e3c72; margin-bottom: 15px; font-size: 1.1em;">School Vice Captain</h3>
                         <img src="dangi.png" alt="Mitanshu - School Vice Captain"
-                            style="width: 120px; height: 120px; border-radius: 50%; border: 3px solid #1e3c72; object-fit: cover;"
+                            style="width: 100px; height: 100px; border-radius: 50%; border: 3px solid #1e3c72; object-fit: cover;"
                             onerror="this.src='School/default.jpg'">
                         <p style="font-size: 1.2em; font-weight: 600; color: #333; margin-top: 15px;">Mitanshu</p>
-                        <p style="color: #666;">Class 12th</p>
+                        <p style="color: #666; font-size: 0.95em;">Class 12th</p>
                     </div>
 
                     <!-- Atal Ambassadors (Dual Layout) -->
                     <div
                         style="text-align: center; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
                         <div style="font-size: 2em; margin-bottom: 10px;">🌟</div>
-                        <h3 style="color: #1e3c72; margin-bottom: 20px;">Atal Ambassadors</h3>
+                        <h3 style="color: #1e3c72; margin-bottom: 15px; font-size: 1.1em;">Atal Ambassadors</h3>
                         <div style="display: flex; justify-content: space-around; margin-bottom: 15px;">
                             <div style="text-align: center;">
                                 <img src="atl1.png" alt="Nilesh - Atal Ambassador"
-                                    style="width: 80px; height: 80px; border-radius: 50%; border: 2px solid #1e3c72; object-fit: cover;"
+                                    style="width: 70px; height: 70px; border-radius: 50%; border: 2px solid #1e3c72; object-fit: cover;"
                                     onerror="this.src='School/default.jpg'">
-                                <p style="font-size: 0.9em; font-weight: 600; color: #333; margin-top: 10px;">Nilesh</p>
+                                <p style="font-size: 0.9em; font-weight: 600; color: #333; margin-top: 8px;">Nilesh</p>
                             </div>
                             <div style="text-align: center;">
                                 <img src="atl2.png" alt="Yash - Atal Ambassador"
-                                    style="width: 80px; height: 80px; border-radius: 50%; border: 2px solid #1e3c72; object-fit: cover;"
+                                    style="width: 70px; height: 70px; border-radius: 50%; border: 2px solid #1e3c72; object-fit: cover;"
                                     onerror="this.src='School/default.jpg'">
-                                <p style="font-size: 0.9em; font-weight: 600; color: #333; margin-top: 10px;">Yash</p>
+                                <p style="font-size: 0.9em; font-weight: 600; color: #333; margin-top: 8px;">Yash</p>
                             </div>
                         </div>
-                        <p style="color: #666;">Class 12th</p>
+                        <p style="color: #666; font-size: 0.95em;">Class 12th</p>
                     </div>
 
                     <!-- Cultural Prefects (Dual Layout) -->
                     <div
                         style="text-align: center; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
                         <div style="font-size: 2em; margin-bottom: 10px;">🎭</div>
-                        <h3 style="color: #1e3c72; margin-bottom: 20px;">Cultural Prefects</h3>
+                        <h3 style="color: #1e3c72; margin-bottom: 15px; font-size: 1.1em;">Cultural Prefects</h3>
                         <div style="display: flex; justify-content: space-around; margin-bottom: 15px;">
                             <div style="text-align: center;">
                                 <img src="muskan.png" alt="Muskaan - Cultural Prefect"
-                                    style="width: 80px; height: 80px; border-radius: 50%; border: 2px solid #1e3c72; object-fit: cover;"
+                                    style="width: 70px; height: 70px; border-radius: 50%; border: 2px solid #1e3c72; object-fit: cover;"
                                     onerror="this.src='School/default.jpg'">
-                                <p style="font-size: 0.9em; font-weight: 600; color: #333; margin-top: 10px;">Muskaan
+                                <p style="font-size: 0.9em; font-weight: 600; color: #333; margin-top: 8px;">Muskaan
                                 </p>
-                                <p style="font-size: 0.8em; color: #666;">12th</p>
+                                <p style="font-size: 0.85em; color: #666;">12th</p>
                             </div>
                             <div style="text-align: center;">
                                 <img src="jiya.png" alt="Jiya - Cultural Prefect"
-                                    style="width: 80px; height: 80px; border-radius: 50%; border: 2px solid #1e3c72; object-fit: cover;"
+                                    style="width: 70px; height: 70px; border-radius: 50%; border: 2px solid #1e3c72; object-fit: cover;"
                                     onerror="this.src='School/default.jpg'">
-                                <p style="font-size: 0.9em; font-weight: 600; color: #333; margin-top: 10px;">Jiya</p>
-                                <p style="font-size: 0.8em; color: #666;">11th</p>
+                                <p style="font-size: 0.9em; font-weight: 600; color: #333; margin-top: 8px;">Jiya</p>
+                                <p style="font-size: 0.85em; color: #666;">11th</p>
                             </div>
                         </div>
                     </div>
@@ -1054,24 +1367,221 @@
                     <div
                         style="text-align: center; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
                         <div style="font-size: 2em; margin-bottom: 10px;">🏏</div>
-                        <h3 style="color: #1e3c72; margin-bottom: 15px;">Sports Prefect</h3>
+                        <h3 style="color: #1e3c72; margin-bottom: 15px; font-size: 1.1em;">Sports Prefect</h3>
                         <img src="sports2.png" alt="Divya - Sports Prefect"
-                            style="width: 120px; height: 120px; border-radius: 50%; border: 3px solid #1e3c72; object-fit: cover;"
+                            style="width: 100px; height: 100px; border-radius: 50%; border: 3px solid #1e3c72; object-fit: cover;"
                             onerror="this.src='School/default.jpg'">
                         <p style="font-size: 1.2em; font-weight: 600; color: #333; margin-top: 15px;">Divya</p>
-                        <p style="color: #666;">Class 12th</p>
+                        <p style="color: #666; font-size: 0.95em;">Class 12th</p>
                     </div>
 
                     <!-- Sports Vice Prefect -->
                     <div
                         style="text-align: center; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
                         <div style="font-size: 2em; margin-bottom: 10px;">🏅</div>
-                        <h3 style="color: #1e3c72; margin-bottom: 15px;">Sports Vice Prefect</h3>
+                        <h3 style="color: #1e3c72; margin-bottom: 15px; font-size: 1.1em;">Sports Vice Prefect</h3>
                         <img src="anchal.png" alt="Anchal - Sports Vice Prefect"
-                            style="width: 120px; height: 120px; border-radius: 50%; border: 3px solid #1e3c72; object-fit: cover;"
+                            style="width: 100px; height: 100px; border-radius: 50%; border: 3px solid #1e3c72; object-fit: cover;"
                             onerror="this.src='School/default.jpg'">
                         <p style="font-size: 1.2em; font-weight: 600; color: #333; margin-top: 15px;">Anchal</p>
-                        <p style="color: #666;">Class 11th</p>
+                        <p style="color: #666; font-size: 0.95em;">Class 11th</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>School Gallery</h2>
+                <p>Explore our events, faculty moments, and celebrations at RKP School (Madina)</p>
+            </div>
+
+            <!-- Gallery Navigation Tabs -->
+            <div style="text-align: center; margin-bottom: 40px;">
+                <div
+                    style="display: inline-flex; background: #f8f9fa; border-radius: 25px; padding: 5px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                    <button class="gallery-tab active" onclick="showGallery('events')"
+                        style="padding: 12px 25px; border: none; background: #1e3c72; color: white; border-radius: 20px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">Events</button>
+                    <button class="gallery-tab" onclick="showGallery('faculty')"
+                        style="padding: 12px 25px; border: none; background: transparent; color: #666; border-radius: 20px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">Faculty</button>
+                    <button class="gallery-tab" onclick="showGallery('celebrations')"
+                        style="padding: 12px 25px; border: none; background: transparent; color: #666; border-radius: 20px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">Celebrations</button>
+                </div>
+            </div>
+
+            <!-- Events Gallery -->
+            <div id="events-gallery" class="gallery-content active">
+                <div style="background: #f8f9fa; padding: 25px; border-radius: 15px; margin: 30px 0;">
+                    <h3 style="text-align: center; color: #1e3c72; margin-bottom: 20px;">School Events</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px;">
+                        <div
+                            style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
+                            <img src="annual sprts.png" alt="School Event 1"
+                                style="width: 100%; height: 200px; border-radius: 10px; object-fit: cover;"
+                                onerror="this.src='School/default.jpg'">
+                            <h4 style="margin-top: 15px; color: #1e3c72; font-size: 1.3em;">Annual Sports Day</h4>
+                            <p style="color: #666; font-size: 1em;">Celebrating athletic excellence and teamwork</p>
+                        </div>
+                        <div
+                            style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                            <img src="meditation.png" alt="School Event 2"
+                                style="width: 100%; height: 180px; border-radius: 8px; object-fit: cover;"
+                                onerror="this.src='School/default.jpg'">
+                            <h4 style="margin-top: 10px; color: #1e3c72; font-size: 1.1em;">Meditation</h4>
+                            <p style="color: #666; font-size: 0.9em;">Relx Mind and Calm..</p>
+                        </div>
+                        <div
+                            style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                            <img src="cultrual.png" alt="School Event 3"
+                                style="width: 100%; height: 180px; border-radius: 8px; object-fit: cover;"
+                                onerror="this.src='School/default.jpg'">
+                            <h4 style="margin-top: 10px; color: #1e3c72; font-size: 1.1em;">Cultural Fest</h4>
+                            <p style="color: #666; font-size: 0.9em;">Celebrating diversity through art and culture</p>
+                        </div>
+                        <div
+                            style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                            <img src="15aug.png" alt="School Event 4"
+                                style="width: 100%; height: 180px; border-radius: 8px; object-fit: cover;"
+                                onerror="this.src='School/default.jpg'">
+                            <h4 style="margin-top: 10px; color: #1e3c72; font-size: 1.1em;">Independence Day</h4>
+                            <p style="color: #666; font-size: 0.9em;">Honoring our nation's freedom and values</p>
+                        </div>
+                        <div
+                            style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                            <img src="PTM1.png" alt="School Event 5"
+                                style="width: 100%; height: 180px; border-radius: 8px; object-fit: cover;"
+                                onerror="this.src='School/default.jpg'">
+                            <h4 style="margin-top: 10px; color: #1e3c72; font-size: 1.1em;">Parent-Teacher Meeting</h4>
+                            <p style="color: #666; font-size: 0.9em;">Building strong partnerships for student success
+                            </p>
+                        </div>
+                        <div
+                            style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                            <img src="annual day.png" alt="School Event 6"
+                                style="width: 100%; height: 180px; border-radius: 8px; object-fit: cover;"
+                                onerror="this.src='School/default.jpg'">
+                            <h4 style="margin-top: 10px; color: #1e3c72; font-size: 1.1em;">Annual Day</h4>
+                            <p style="color: #666; font-size: 0.9em;">Showcasing talents and achievements</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Faculty Gallery -->
+            <div id="faculty-gallery" class="gallery-content">
+                <div style="background: #f8f9fa; padding: 30px; border-radius: 15px; margin: 30px 0;">
+                    <h3 style="text-align: center; color: #1e3c72; margin-bottom: 20px;">Our Faculty</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px;">
+                        <div
+                            style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
+                            <img src="teaching.png" alt="Faculty Member 1"
+                                style="width: 100%; height: 200px; border-radius: 10px; object-fit: cover;"
+                                onerror="this.src='School/default.jpg'">
+                            <h4 style="margin-top: 15px; color: #1e3c72; font-size: 1.3em;">Teaching Moments</h4>
+                            <p style="color: #666; font-size: 1em;">Dedicated educators inspiring young minds</p>
+                        </div>
+                        <div
+                            style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                            <img src="UNCLES 1.png" alt="Faculty Member 2"
+                                style="width: 100%; height: 180px; border-radius: 8px; object-fit: cover;"
+                                onerror="this.src='School/default.jpg'">
+                            <h4 style="margin-top: 10px; color: #1e3c72; font-size: 1.1em;">School Helper's
+                            </h4>
+                            <p style="color: #666; font-size: 0.9em;">Make evryone happy and Help Evryone</p>
+                        </div>
+                        <div
+                            style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                            <img src="team.png" alt="Faculty Member 3"
+                                style="width: 100%; height: 180px; border-radius: 8px; object-fit: cover;"
+                                onerror="this.src='School/default.jpg'">
+                            <h4 style="margin-top: 10px; color: #1e3c72; font-size: 1.1em;">Team Collaboration</h4>
+                            <p style="color: #666; font-size: 0.9em;">Working together for student success</p>
+                        </div>
+                        <div
+                            style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                            <img src="goverment.png" alt="Faculty Member 4"
+                                style="width: 100%; height: 180px; border-radius: 8px; object-fit: cover;"
+                                onerror="this.src='School/default.jpg'">
+                            <h4 style="margin-top: 10px; color: #1e3c72; font-size: 1.1em;">Interaction with Govement school Students
+                            </h4>
+                            <p style="color: #666; font-size: 0.9em;">Coaching and mentoring beyond academics</p>
+                        </div>
+                        <div
+                            style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                            <img src="students small.png" alt="Faculty Member 5"
+                                style="width: 100%; height: 180px; border-radius: 8px; object-fit: cover;"
+                                onerror="this.src='School/default.jpg'">
+                            <h4 style="margin-top: 10px; color: #1e3c72; font-size: 1.1em;">Student Interaction</h4>
+                            <p style="color: #666; font-size: 0.9em;">Building meaningful relationships</p>
+                        </div>
+                        <div
+                            style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                            <img src="teacher all.png" alt="Faculty Member 6"
+                                style="width: 100%; height: 180px; border-radius: 8px; object-fit: cover;"
+                                onerror="this.src='School/default.jpg'">
+                            <h4 style="margin-top: 10px; color: #1e3c72; font-size: 1.1em;">Innovation in Teaching</h4>
+                            <p style="color: #666; font-size: 0.9em;">Modern methods for better learning</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Celebrations Gallery -->
+            <div id="celebrations-gallery" class="gallery-content">
+                <div style="background: #f8f9fa; padding: 30px; border-radius: 15px; margin: 30px 0;">
+                    <h3 style="text-align: center; color: #1e3c72; margin-bottom: 20px;">School Celebrations</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px;">
+                        <div
+                            style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
+                            <img src="teacher 11.png" alt="Celebration 1"
+                                style="width: 100%; height: 200px; border-radius: 10px; object-fit: cover;"
+                                onerror="this.src='School/default.jpg'">
+                            <h4 style="margin-top: 15px; color: #1e3c72; font-size: 1.3em;">Teachers Day</h4>
+                            <p style="color: #666; font-size: 1em;">Honoring our dedicated educators</p>
+                        </div>
+                        <div
+                            style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                            <img src="acdmic gift.png" alt="Celebration 2"
+                                style="width: 100%; height: 180px; border-radius: 8px; object-fit: cover;"
+                                onerror="this.src='School/default.jpg'">
+                            <h4 style="margin-top: 10px; color: #1e3c72; font-size: 1.1em;">Acadmic Reward</h4>
+                            <p style="color: #666; font-size: 0.9em;">Celebrating and Giving Reward</p>
+                        </div>
+                        <div
+                            style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                            <img src="schoolcaptain.png" alt="Celebration 3"
+                                style="width: 100%; height: 180px; border-radius: 8px; object-fit: cover;"
+                                onerror="this.src='School/default.jpg'">
+                            <h4 style="margin-top: 10px; color: #1e3c72; font-size: 1.1em;">School Captain</h4>
+                            <p style="color: #666; font-size: 0.9em;">All captain together</p>
+                        </div>
+                        <div
+                            style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                            <img src="shavan shivratri.png" alt="Celebration 4"
+                                style="width: 100%; height: 180px; border-radius: 8px; object-fit: cover;"
+                                onerror="this.src='School/default.jpg'">
+                            <h4 style="margin-top: 10px; color: #1e3c72; font-size: 1.1em;">Shawan Shivratri</h4>
+                            <p style="color: #666; font-size: 0.9em;">Festival of lights and joy</p>
+                        </div>
+                        <div
+                            style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                            <img src="Teacher.png"
+                                style="width: 100%; height: 180px; border-radius: 8px; object-fit: cover;"
+                                onerror="this.src='School/default.jpg'">
+                            <h4 style="margin-top: 10px; color: #1e3c72; font-size: 1.1em;">Our Teacher all Together</h4>
+                            <p style="color: #666; font-size: 0.9em;">Spreading Happiness</p>
+                        </div>
+                        <div
+                            style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                            <img src="students 2.png" alt="Celebration 6"
+                                style="width: 100%; height: 180px; border-radius: 8px; object-fit: cover;"
+                                onerror="this.src='School/default.jpg'">
+                            <h4 style="margin-top: 10px; color: #1e3c72; font-size: 1.1em;">Achievement Awards</h4>
+                            <p style="color: #666; font-size: 0.9em;">Recognizing excellence and hard work</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1085,12 +1595,12 @@
                 <h2>Teachers Day Celebration</h2>
                 <p>Celebrating our dedicated teachers who inspire and guide our students every day</p>
             </div>
-            <div style="background: #f8f9fa; padding: 30px; border-radius: 15px; margin: 30px 0;">
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+            <div style="background: #f8f9fa; padding: 25px; border-radius: 15px; margin: 30px 0;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px;">
                     <div
-                        style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                        style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
                         <img src="Teacher 3.png" alt="Teachers Day Image 1"
-                            style="width: 100%; height: 150px; border-radius: 8px; object-fit: cover;"
+                            style="width: 100%; height: 180px; border-radius: 10px; object-fit: cover;"
                             onerror="this.src='School/default.jpg'">
                     </div>
 
@@ -1273,6 +1783,105 @@
         </div>
     </section>
 
+    <!-- Job Opportunities Section -->
+    <section id="jobs">
+        <div class="container">
+            <div class="section-title">
+                <h2>Job Opportunities</h2>
+                <p>Join our team and contribute to shaping young minds at RKP School (Madina)</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Why Join Us?</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <div>
+                            <h4 style="font-size: 1.2em;">Professional Growth</h4>
+                            <p style="font-size: 1.05em;">Continuous professional development and training opportunities</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-users"></i>
+                        <div>
+                            <h4 style="font-size: 1.2em;">Collaborative Environment</h4>
+                            <p style="font-size: 1.05em;">Work with dedicated educators and supportive administration</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-heart"></i>
+                        <div>
+                            <h4 style="font-size: 1.2em;">Make a Difference</h4>
+                            <p style="font-size: 1.05em;">Impact the lives of students and shape their future</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4 style="font-size: 1.2em;">Work-Life Balance</h4>
+                            <p style="font-size: 1.05em;">Competitive compensation and reasonable working hours</p>
+                        </div>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-top: 20px;">
+                        <h4 style="color: #1e3c72; margin-bottom: 10px;">Current Openings</h4>
+                        <ul style="color: #555; margin: 0; padding-left: 20px;">
+                            <li>Teaching positions (All subjects)</li>
+                            <li>Administrative staff</li>
+                            <li>Laboratory assistants</li>
+                            <li>Librarian</li>
+                            <li>Sports coach</li>
+                            <li>Counselor</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Apply for a Position</h3>
+                    <form id="jobForm">
+                        <div class="form-group">
+                            <label for="jobName">Full Name</label>
+                            <input type="text" id="jobName" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="jobEmail">Email Address</label>
+                            <input type="email" id="jobEmail" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="jobPhone">Phone Number</label>
+                            <input type="tel" id="jobPhone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="jobPosition">Position Applied For</label>
+                            <select id="jobPosition" name="position" required>
+                                <option value="">Select Position</option>
+                                <option value="teacher">Teacher</option>
+                                <option value="admin">Administrative Staff</option>
+                                <option value="lab-assistant">Laboratory Assistant</option>
+                                <option value="librarian">Librarian</option>
+                                <option value="sports-coach">Sports Coach</option>
+                                <option value="counselor">Counselor</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="jobQualification">Qualification</label>
+                            <input type="text" id="jobQualification" name="qualification"
+                                placeholder="e.g., B.Ed, M.Sc, etc." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="jobExperience">Years of Experience</label>
+                            <input type="number" id="jobExperience" name="experience" min="0" placeholder="Years">
+                        </div>
+                        <div class="form-group">
+                            <label for="jobMessage">Additional Information</label>
+                            <textarea id="jobMessage" name="message"
+                                placeholder="Tell us about yourself and why you'd like to join our team"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Application</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact">
         <div class="container">
@@ -1368,9 +1977,11 @@
                     <a href="#school-head">School Head</a><br>
                     <a href="#teachers">Our Teachers</a><br>
                     <a href="#school-leaders">School Leaders</a><br>
+                    <a href="#gallery">Gallery</a><br>
                     <a href="#teachers-day">Teachers Day</a><br>
                     <a href="#news">News & Events</a><br>
                     <a href="#admissions">Admissions</a><br>
+                    <a href="#jobs">Job Opportunities</a><br>
                     <a href="#contact">Contact Us</a>
                 </div>
                 <div class="footer-section">
@@ -1406,38 +2017,91 @@
     </div>
 
     <script>
-        // Navigation scroll effect
+        // Dynamic Navigation Effects
+        let lastScrollTop = 0;
+        const navbar = document.getElementById('navbar');
+        const mobileNav = document.getElementById('mobileNav');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+
+        // Scroll effects for navigation
         window.addEventListener('scroll', function () {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            // Add scrolled class for background effect
+            if (scrollTop > 50) {
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
             }
+
+            // Shrink navbar on scroll
+            if (scrollTop > 100) {
+                navbar.classList.add('shrink');
+            } else {
+                navbar.classList.remove('shrink');
+            }
+
+            // Update active navigation link
+            updateActiveNavLink();
+
+            lastScrollTop = scrollTop;
         });
 
-        // Smooth scrolling for navigation links
+        // Mobile menu toggle
+        mobileMenuBtn.addEventListener('click', function () {
+            mobileNav.classList.toggle('active');
+            this.classList.toggle('active');
+
+            // Animate hamburger menu
+            const bars = this.querySelectorAll('.bar');
+            if (mobileNav.classList.contains('active')) {
+                bars[0].style.transform = 'rotate(45deg) translate(6px, 6px)';
+                bars[1].style.opacity = '0';
+                bars[2].style.transform = 'rotate(-45deg) translate(6px, -6px)';
+            } else {
+                bars[0].style.transform = 'none';
+                bars[1].style.opacity = '1';
+                bars[2].style.transform = 'none';
+            }
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', function () {
+                mobileNav.classList.remove('active');
+                mobileMenuBtn.classList.remove('active');
+
+                // Reset hamburger animation
+                const bars = mobileMenuBtn.querySelectorAll('.bar');
+                bars[0].style.transform = 'none';
+                bars[1].style.opacity = '1';
+                bars[2].style.transform = 'none';
+            });
+        });
+
+        // Smooth scrolling for all navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                    const offsetTop = target.offsetTop - 85; // Account for fixed navbar height
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
                     });
                 }
             });
         });
 
-        // Active navigation link on scroll
-        window.addEventListener('scroll', function () {
+        // Update active navigation link based on scroll position
+        function updateActiveNavLink() {
             const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-links a');
+            const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
 
             let current = '';
             sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
+                const sectionTop = section.offsetTop - 105;
                 if (pageYOffset >= sectionTop) {
                     current = section.getAttribute('id');
                 }
@@ -1445,10 +2109,23 @@
 
             navLinks.forEach(link => {
                 link.classList.remove('active');
-                if (link.getAttribute('href').includes(current)) {
+                if (link.getAttribute('href') === `#${current}`) {
                     link.classList.add('active');
                 }
             });
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function (e) {
+            if (!navbar.contains(e.target) && mobileNav.classList.contains('active')) {
+                mobileNav.classList.remove('active');
+                mobileMenuBtn.classList.remove('active');
+
+                const bars = mobileMenuBtn.querySelectorAll('.bar');
+                bars[0].style.transform = 'none';
+                bars[1].style.opacity = '1';
+                bars[2].style.transform = 'none';
+            }
         });
 
         // Scroll to top functionality
@@ -1472,6 +2149,13 @@
         document.getElementById('contactForm').addEventListener('submit', function (e) {
             e.preventDefault();
             alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+
+        // Job application form handling
+        document.getElementById('jobForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('Thank you for your job application! We will review your application and get back to you soon.');
             this.reset();
         });
 
@@ -1573,6 +2257,122 @@
 
         // Initialize gallery when page loads
         window.addEventListener('load', initializeGallery);
+
+        // Gallery tab functionality
+        function showGallery(galleryType) {
+            // Hide all gallery contents
+            const galleries = document.querySelectorAll('.gallery-content');
+            galleries.forEach(gallery => {
+                gallery.classList.remove('active');
+            });
+
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.gallery-tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show selected gallery
+            const selectedGallery = document.getElementById(galleryType + '-gallery');
+            if (selectedGallery) {
+                selectedGallery.classList.add('active');
+            }
+
+            // Add active class to clicked tab
+            const clickedTab = document.querySelector(`[onclick="showGallery('${galleryType}')"]`);
+            if (clickedTab) {
+                clickedTab.classList.add('active');
+            }
+        }
+
+        // Subject selection functionality
+        function initializeSubjectSelection() {
+            const subjectDropdowns = document.querySelectorAll('.subject-dropdown');
+
+            subjectDropdowns.forEach(dropdown => {
+                dropdown.addEventListener('change', function() {
+                    const selectedSubject = this.value;
+                    const teacherCard = this.closest('.teacher-card');
+                    const teacherName = teacherCard.querySelector('.teacher-name').textContent;
+
+                    if (selectedSubject) {
+                        // Show feedback when subject is selected
+                        showSubjectFeedback(teacherName, selectedSubject, teacherCard);
+                    }
+                });
+            });
+        }
+
+        function showSubjectFeedback(teacherName, subject, teacherCard) {
+            // Remove any existing feedback
+            const existingFeedback = teacherCard.querySelector('.subject-feedback');
+            if (existingFeedback) {
+                existingFeedback.remove();
+            }
+
+            // Create feedback element
+            const feedback = document.createElement('div');
+            feedback.className = 'subject-feedback';
+            feedback.style.cssText = `
+                margin-top: 10px;
+                padding: 10px;
+                background: linear-gradient(135deg, #e8f5e8, #d4edda);
+                border: 1px solid #c3e6cb;
+                border-radius: 8px;
+                font-size: 0.85em;
+                color: #155724;
+                animation: fadeInFeedback 0.3s ease;
+            `;
+
+            const subjectNames = {
+                'english': 'English',
+                'hindi': 'Hindi',
+                'math': 'Mathematics',
+                'science': 'Science',
+                'physics': 'Physics',
+                'chemistry': 'Chemistry',
+                'computer': 'Computer Science',
+                'social': 'Social Studies',
+                'sanskrit': 'Sanskrit'
+            };
+
+            feedback.innerHTML = `
+                <strong>${teacherName}</strong> teaches <strong>${subjectNames[subject]}</strong><br>
+                <small>Subject selection confirmed!</small>
+            `;
+
+            // Add feedback to teacher card
+            teacherCard.querySelector('.teacher-info').appendChild(feedback);
+
+            // Auto-hide feedback after 3 seconds
+            setTimeout(() => {
+                if (feedback.parentNode) {
+                    feedback.style.animation = 'fadeOutFeedback 0.3s ease';
+                    setTimeout(() => {
+                        if (feedback.parentNode) {
+                            feedback.remove();
+                        }
+                    }, 300);
+                }
+            }, 3000);
+        }
+
+        // Add CSS animations for feedback
+        const feedbackStyles = document.createElement('style');
+        feedbackStyles.textContent = `
+            @keyframes fadeInFeedback {
+                from { opacity: 0; transform: translateY(-10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            @keyframes fadeOutFeedback {
+                from { opacity: 1; transform: translateY(0); }
+                to { opacity: 0; transform: translateY(-10px); }
+            }
+        `;
+        document.head.appendChild(feedbackStyles);
+
+        // Initialize subject selection when page loads
+        window.addEventListener('load', initializeSubjectSelection);
     </script>
 </body>
 
